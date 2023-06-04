@@ -5,7 +5,7 @@ import { Card } from "@mui/material";
 
 function Login(): JSX.Element {
     return (
-        <Card>
+        <Card sx={{ padding: 2 }}>
             <LoginInputs />
             <LoginButtons />
             <LoginThirdPartyOptions />
