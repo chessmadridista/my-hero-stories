@@ -1,4 +1,5 @@
 import { Card, CardHeader, CardContent, CardMedia } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface hero {
     id: number;
@@ -10,18 +11,20 @@ interface hero {
 function Hero({hero}: {hero: hero}): JSX.Element {
     return (
         <>
-            <Card key={hero.id}>
-                <CardHeader title={hero.name} />
-                <CardMedia 
-                    component='img'
-                    alt={hero.name}
-                    height='200'
-                    image={hero.imageUrl}
-                />
-                <CardContent>
-                    { hero.bio }
-                </CardContent>
-            </Card>
+            <Link to='/stories'>
+                <Card key={hero.id}>
+                    <CardHeader title={hero.name} />
+                    <CardMedia 
+                        component='img'
+                        alt={hero.name}
+                        height='200'
+                        image={hero.imageUrl}
+                    />
+                    <CardContent>
+                        { hero.bio }
+                    </CardContent>
+                </Card>
+            </Link>
         </>
     );
 }
