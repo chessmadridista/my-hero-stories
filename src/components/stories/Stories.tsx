@@ -100,7 +100,14 @@ const commentCards = comments.map((comment) => {
         </>
     );
 });
+
+
+
 const storyCards = stories.map((story) => {
+    function toggleComments() {
+        story.showComments = !story.showComments;
+    }
+
     return (
         <>
             <Card key={story.id}>
@@ -113,7 +120,7 @@ const storyCards = stories.map((story) => {
                     <IconButton color='primary'>
                         <ThumbUp />
                     </IconButton>
-                    <IconButton color='primary'>
+                    <IconButton color='primary' onClick={toggleComments}>
                         <Comment />
                     </IconButton>
                     <IconButton color='primary'>
