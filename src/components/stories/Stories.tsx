@@ -1,9 +1,10 @@
-import { Card, CardContent, CardHeader } from "@mui/material";
+import { AddComment, Comment, Save, Share, ThumbUp } from "@mui/icons-material";
+import { Card, CardActions, CardContent, CardHeader, IconButton } from "@mui/material";
 
 interface Comment {
     id: number;
     username: string;
-    commentDescription: string;
+    description: string;
     noOfLikes: number;
     noOfReplies: number;
     noOfShares: number;
@@ -13,7 +14,7 @@ const comments: Array<Comment> = [
     {
       id: 1,
       username: 'Commenter1',
-      commentDescription: 'Great story! I had a similar experience.',
+      description: 'Great story! I had a similar experience.',
       noOfLikes: 7,
       noOfReplies: 2,
       noOfShares: 1,
@@ -22,7 +23,7 @@ const comments: Array<Comment> = [
     {
       id: 2,
       username: 'Commenter2',
-      commentDescription: 'This story resonates with me. Thanks for sharing!',
+      description: 'This story resonates with me. Thanks for sharing!',
       noOfLikes: 5,
       noOfReplies: 1,
       noOfShares: 0,
@@ -31,7 +32,7 @@ const comments: Array<Comment> = [
     {
       id: 3,
       username: 'Commenter3',
-      commentDescription: 'I completely agree. His teachings have had a profound impact on my life.',
+      description: 'I completely agree. His teachings have had a profound impact on my life.',
       noOfLikes: 10,
       noOfReplies: 3,
       noOfShares: 2,
@@ -47,6 +48,7 @@ interface Story {
     noOfComments: number;
     noOfShares: number;
     comments: Array<Comment>;
+    showComments: boolean;
     savePost: boolean;
 }
 const stories: Array<Story> = [
@@ -59,6 +61,7 @@ const stories: Array<Story> = [
       noOfComments: 3,
       noOfShares: 5,
       comments: comments,
+      showComments: false,
       savePost: false,
     },
     {
@@ -70,6 +73,7 @@ const stories: Array<Story> = [
       noOfComments: 2,
       noOfShares: 3,
       comments: comments,
+      showComments: false,
       savePost: false,
     },
     {
@@ -81,17 +85,47 @@ const stories: Array<Story> = [
       noOfComments: 5,
       noOfShares: 2,
       comments: comments,
+      showComments: false,
       savePost: false,
     },
 ];
+const commentCards = comments.map((comment) => {
+    return (
+        <>
+            <Card>
+                <CardContent>
+                    { comment.description }
+                </CardContent>
+            </Card>
+        </>
+    );
+});
 const storyCards = stories.map((story) => {
     return (
         <>
             <Card key={story.id}>
                 <CardHeader title={story.title} />
                 <CardContent>
-                    {story.description}
+                    { story.description }
+                    { story.showComments && commentCards }
                 </CardContent>
+                <CardActions>
+                    <IconButton color='primary'>
+                        <ThumbUp />
+                    </IconButton>
+                    <IconButton color='primary'>
+                        <Comment />
+                    </IconButton>
+                    <IconButton color='primary'>
+                        <AddComment />
+                    </IconButton>
+                    <IconButton color='primary'>
+                        <Share />
+                    </IconButton>
+                    <IconButton color='primary'>
+                        <Save />
+                    </IconButton>
+                </CardActions>
             </Card>
         </>
     );
@@ -100,7 +134,7 @@ const storyCards = stories.map((story) => {
 function Stories(): JSX.Element {
     return (
         <>
-            {storyCards}
+            { storyCards }
         </>
     );
 }
