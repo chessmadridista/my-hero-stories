@@ -94,9 +94,27 @@ const commentCards = comments.map((comment) => {
     return (
         <>
             <Card key={comment.id}>
+                <CardHeader title={comment.username} />
                 <CardContent>
                     {comment.description}
                 </CardContent>
+                <CardActions>
+                    <IconButton color='primary'>
+                        <ThumbUp />
+                    </IconButton>
+                    <IconButton color='primary'>
+                        <Comment />
+                    </IconButton>
+                    <IconButton color='primary'>
+                        <AddComment />
+                    </IconButton>
+                    <IconButton color='primary'>
+                        <Share />
+                    </IconButton>
+                    <IconButton color='primary'>
+                        <Save />
+                    </IconButton>
+                </CardActions>
             </Card>
         </>
     );
@@ -113,7 +131,7 @@ function Stories(): JSX.Element {
         return (
             <>
                 <Card key={story.id}>
-                    <CardHeader title={story.title} />
+                    <CardHeader title={story.title} subheader={story.username} />
                     <CardContent>
                         {story.description}
                     </CardContent>
